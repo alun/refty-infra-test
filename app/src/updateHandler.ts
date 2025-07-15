@@ -27,7 +27,7 @@ export async function handleUpdateRequest(req: Request, res: Response) {
       return res.status(200).json(ResponseBuilder.notChanged());
     }
 
-    await commitAndPushChanges(result.changedFiles, image, version);
+    // await commitAndPushChanges(result.changedFiles, image, version);
 
     logger.info(
       `Successfully updated ${result.totalReplacements} occurrences in ${result.changedFiles.length} files`
