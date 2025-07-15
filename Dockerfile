@@ -1,5 +1,6 @@
 # Используем образ Node.js
 FROM node:20-alpine
+RUN apk add --no-cache git
 
 # Устанавливаем рабочую директорию — внутри app/
 WORKDIR /app/app
@@ -18,4 +19,4 @@ ENV NODE_ENV=production
 ENV REPO_PATH=./repo
 
 # Запуск
-CMD ["node", "dist/server.js"]
+CMD ["node", "src/server.js"]
