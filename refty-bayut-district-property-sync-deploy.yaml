@@ -13,42 +13,42 @@ spec:
         app: refty-bayut-district-property-sync
     spec:
       containers:
-      - command:
-        - node
-        - dist/bayutDistrictSyncManager.js
-        env:
-        - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              key: username
-              name: postgres-secret
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: password
-              name: postgres-secret
-        - name: POSTGRES_HOST
-          value: postgres
-        - name: POSTGRES_DB
-          value: postgres
-        - name: POSTGRES_PORT
-          value: '5432'
-        image: ghcr.io/refty-yapi/refty-node/refty-node:05-06-4215
-        name: refty-bayut-district-property-sync
-        volumeMounts:
-        - mountPath: /app/config
-          name: refty-node-config
+        - command:
+            - node
+            - dist/bayutDistrictSyncManager.js
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: postgres-secret
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: postgres-secret
+            - name: POSTGRES_HOST
+              value: postgres
+            - name: POSTGRES_DB
+              value: postgres
+            - name: POSTGRES_PORT
+              value: '5432'
+          image: ghcr.io/refty-yapi/refty-node/refty-node:10-10-ver
+          name: refty-bayut-district-property-sync
+          volumeMounts:
+            - mountPath: /app/config
+              name: refty-node-config
       imagePullSecrets:
-      - name: regcred
+        - name: regcred
       nodeSelector:
         purpose: parsers
       serviceAccountName: refty-dev-new
       tolerations:
-      - effect: NoSchedule
-        key: dedicated
-        operator: Equal
-        value: parsers
+        - effect: NoSchedule
+          key: dedicated
+          operator: Equal
+          value: parsers
       volumes:
-      - configMap:
+        - configMap:
+            name: refty-node-config
           name: refty-node-config
-        name: refty-node-config
