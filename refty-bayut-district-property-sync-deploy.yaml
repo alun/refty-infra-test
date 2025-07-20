@@ -22,7 +22,7 @@ spec:
           effect: "NoSchedule"
       containers:
         - name: refty-bayut-district-property-sync
-          image: ghcr.io/refty-yapi/refty-node/refty-node:05-07-21113c
+          image: ghcr.io/refty-yapi/refty-node/refty-node:10-08-ver
           command: ["node", "dist/bayutDistrictSyncManager.js"]
           env:
             - name: POSTGRES_USER
